@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'custom': ['Raleway','Ubuntu','Nunito Sans', 'sans-serif'],
+        'sans': ['Helvetica', 'Arial', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
