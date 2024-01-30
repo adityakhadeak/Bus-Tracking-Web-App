@@ -49,8 +49,8 @@ function Navbar() {
             <div className='hidden md:flex'>
                 <ul className='text-[16px]  font-[Raleway] font-semibold flex flex-row gap-5'>
                     <li><NavLink to={'/'} className='onHover relative  p-1 mx-2 m-1'>Home</NavLink></li>
-                    <li><NavLink to={'TimeTable'} className='onHover relative  p-1 m-1'>Time-Table</NavLink></li>
-                    <li><NavLink to={'LiveLoc'} className='onHover relative  p-1 m-1'>Live Location</NavLink></li>
+                    <li><NavLink to={'timetable'} className='onHover relative  p-1 m-1'>Time-Table</NavLink></li>
+                    <li><NavLink to={'livelocation'} className='onHover relative  p-1 m-1'>Live Location</NavLink></li>
                 </ul>
                 {/* <ul className='text-[16px]  font-[Raleway] font-semibold flex flex-row'>
                     <NavLink to={'/'} className={'relative'}  ><li className='onHover relative  p-1 m-1'>Home</li></NavLink>
