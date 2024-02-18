@@ -13,7 +13,10 @@ const busSchema=new mongoose.Schema({
     currentLocation:{
         'lat':String,
         'lng':String
-    }
+    },    
+},
+{
+   timestamps:true 
 })
 
 export default mongoose.model('buses','busSchema')

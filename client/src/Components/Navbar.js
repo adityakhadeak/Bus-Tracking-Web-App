@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 
 
-function Navbar() {
+function NavBar() {
     const [menu, setMenu] = useState(false)
     useEffect(() => {
         const handleResize = () => {
@@ -14,8 +14,6 @@ function Navbar() {
             if (width > 768) {
                 setMenu(false)
             }
-            
-
             
         };
 
@@ -59,7 +57,7 @@ function Navbar() {
                 </ul> */}
             </div>
             <div className='hidden md:flex'>
-                <Link to={'/'}> <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Track Bus</button></Link>
+                <Link to={'/'}> <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Share Location</button></Link>
             </div>
             <div className='flex md:hidden'>
                 <GiHamburgerMenu onClick={showMenu} className='text-[20px]' />
@@ -80,11 +78,11 @@ function Navbar() {
                     </ul>
                 </div>
                 <div className='px-1 ml-3'>
-                    <Link to={'/'}> <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Track Bus</button></Link>
+                    <Link to={'/'}> <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Share Location</button></Link>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Navbar
+export default NavBar
