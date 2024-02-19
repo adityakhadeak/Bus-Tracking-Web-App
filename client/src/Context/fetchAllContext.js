@@ -21,6 +21,7 @@ export const FetchAllContextProvider = (props) => {
             console.log('Error getting Schedule')
         }
 
+        console.log(data)
         setBusSchedule(data.data)
     }
 

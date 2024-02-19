@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const busScheduleSchema=new mongoose.Schema({
+    busId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'buses'
+        
+    },
     busNo:{
         type:String,
         required:true

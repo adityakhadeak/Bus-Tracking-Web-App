@@ -1,22 +1,18 @@
 import mongoose from "mongoose";
 
 const busSchema=new mongoose.Schema({
-    busId:{
+    busName:{
         type: String,
         required: true,
         unique: true
     },
-    route:{
-        type:String,
-        required:true
-    },
     currentLocation:{
-        'lat':String,
-        'lng':String
+        lat:String,
+        lng:String
     },    
 },
 {
    timestamps:true 
 })
 
-export default mongoose.model('buses','busSchema')
+export default mongoose.model('buses',busSchema)
