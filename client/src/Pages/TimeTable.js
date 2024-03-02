@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { fetchAllContext } from '../Context/fetchAllContext'
 import { baseUrl } from '../helper'
-
 const TimeTable = () => {
   const { fetchBusSchedule, busSchedule } = useContext(fetchAllContext)
   const [destination, setDestination] = useState('murbad')
@@ -9,13 +8,14 @@ const TimeTable = () => {
   const [fromMurbadSchedule, setFromMurbadSchedule] = useState([])
   const [watchPosId, setWatchPosId] = useState(null)
   const [isSharingLocation, setIsSharingLocation] = useState({"busId":"","isOn":false});
-
+  const [coordinates, setCoordinates] = useState({"lat":"","lng":""})
 
   const shareLocation = (busId) => {
     setIsSharingLocation({busId,isOn:true});
     const watchId = navigator.geolocation.watchPosition(
       async (position) => {
         const { latitude, longitude } = position.coords
+        setCoordinates({lat:latitude,lng:longitude})
         const response = await fetch(`${baseUrl}/api/location/sharelocation/${busId}`, {
           method: "POST",
           headers: {
@@ -27,9 +27,9 @@ const TimeTable = () => {
           return console.log("Some error occur during sharing location")
         }
         const data = await response.json()
-        console.log(data)
-        alert(`your Location is lng:${data.updatedData.currentLocation.lng}  lat:${data.updatedData.currentLocation.lat}`)
-        console.log(data, "updated Location")
+        // console.log(data)
+        // alert(`your Location is lng:${data.updatedData.currentLocation.lng}  lat:${data.updatedData.currentLocation.lat}`)
+        // console.log(data, "updated Location")
 
       },
       (error) => {

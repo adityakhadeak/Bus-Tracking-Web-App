@@ -16,7 +16,7 @@ function NavBar() {
             }
             
         };
-
+        
         handleResize();
         window.addEventListener('resize', handleResize);
         // window.addEventListener('scroll', handleScroll);
@@ -57,7 +57,7 @@ function NavBar() {
                 </ul> */}
             </div>
             <div className='hidden md:flex'>
-                <Link to={'/'}> <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Share Location</button></Link>
+                <Link to={'/'}> <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[150px] rounded-[15px] text-white'>Share Location</button></Link>
             </div>
             <div className='flex md:hidden'>
                 <GiHamburgerMenu onClick={showMenu} className='text-[20px]' />
@@ -70,7 +70,7 @@ function NavBar() {
                         <div><IoMdClose onClick={showMenu}/></div>
                     </div>
                 </div>
-                <div className='my-3 ml-3' >
+                <div className='my-3 ml-3  ' >
                     <ul className='text-[16px]  font-[Raleway] font-semibold flex flex-col gap-3'>
                         <li><NavLink to={'/'} className='onHover relative  p-1 mx-2 m-1'>Home</NavLink></li>
                         <li><NavLink to={'TimeTable'} className='onHover relative  p-1 m-1'>Time-Table</NavLink></li>
@@ -78,7 +78,7 @@ function NavBar() {
                     </ul>
                 </div>
                 <div className='px-1 ml-3'>
-                    <Link to={'/'}> <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Share Location</button></Link>
+                    <Link to={'/'}> <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[150px] rounded-[15px]  text-white'>Share Location</button></Link>
                 </div>
             </div>
         </div>
