@@ -27,7 +27,7 @@ const TimeTable = () => {
           return console.log("Some error occur during sharing location")
         }
         const data = await response.json()
-        // console.log(data)
+        console.log(data)
         // alert(`your Location is lng:${data.updatedData.currentLocation.lng}  lat:${data.updatedData.currentLocation.lat}`)
         // console.log(data, "updated Location")
 

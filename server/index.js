@@ -4,10 +4,8 @@ import cors from 'cors'
 import ConnectToDB from './database/db.js'
 import routerBus from './routes/busRoutes.js'
 import routerShareLoc from './routes/shareLocaRoutes.js'
-import http from 'http'
 import path from 'path'
-const app=express()
-const server=http.createServer(app)
+import { app,server } from './socket/socket.js'
 dotenv.config()
 const __dirname=path.resolve()
 
