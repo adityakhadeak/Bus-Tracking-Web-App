@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { fetchAllContext } from '../Context/fetchAllContext'
 import { baseUrl } from '../helper'
+import { SocketContext } from '../Context/socketContext.js'
+import { Link } from 'react-router-dom'
 const TimeTable = () => {
+  const {setCoordinates,fetchLastLocation}=useContext(SocketContext)
   const { fetchBusSchedule, busSchedule } = useContext(fetchAllContext)
   const [destination, setDestination] = useState('murbad')
   const [fromBadlapurSchedule, setFromBadlapurSchedule] = useState([])
   const [fromMurbadSchedule, setFromMurbadSchedule] = useState([])
   const [watchPosId, setWatchPosId] = useState(null)
   const [isSharingLocation, setIsSharingLocation] = useState({"busId":"","isOn":false});
-  const [coordinates, setCoordinates] = useState({"lat":"","lng":""})
 
   const shareLocation = (busId) => {
     setIsSharingLocation({busId,isOn:true});
@@ -27,7 +29,6 @@ const TimeTable = () => {
           return console.log("Some error occur during sharing location")
         }
         const data = await response.json()
-        console.log(data)
         // alert(`your Location is lng:${data.updatedData.currentLocation.lng}  lat:${data.updatedData.currentLocation.lat}`)
         // console.log(data, "updated Location")
 
@@ -103,7 +104,7 @@ const TimeTable = () => {
                       <td className="border-collapse border border-slate-400">{schedule.busTime}</td>
                       <td className="border-collapse border border-slate-400">
                         <div className='flex flex-row justify-around'>
-                          <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white' >View Loc</button>
+                          <button onClick={()=>fetchLastLocation(schedule.busId)} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white' ><Link to={'/livelocation'} >View Locn</Link></button>
                           {isSharingLocation.busId===schedule.busId && isSharingLocation.isOn===true?
                           <button onClick={() => stopShareLocation(schedule.busId)} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Stop Share</button>
                           :<button disabled={isSharingLocation.isOn}  onClick={() => shareLocation(schedule.busId)} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white '>Share Loc</button>

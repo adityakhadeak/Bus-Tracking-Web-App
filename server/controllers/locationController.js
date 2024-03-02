@@ -2,12 +2,9 @@ import BusModel from "../models/BusModel.js";
 
 export const sharelocation=async(req,res)=>{
     const data=req.body
-    console.log(data)
     const busId=req.params.id
-    console.log(busId)
     try {
         const existingLocation= await BusModel.findById(busId)
-        console.log(existingLocation)
         if(!existingLocation)
         {
             const busData = new BusModel({
@@ -42,5 +39,28 @@ export const sharelocation=async(req,res)=>{
             message: 'Internal server error',
             error
         });
+    }
+}
+
+export const getLocation=async(req,res)=>{
+    try {
+        const busId=req.params.busId
+
+        const businfo=await BusModel.findById(busId)
+    
+        if(!businfo)
+        {
+            return res.status(400).json({
+                success:false,
+                message:"Bus not found"
+            })
+        }
+        res.status(200).json({
+            success:true,
+            lat:businfo.currentLocation.lat,
+            lng:businfo.currentLocation.lng
+        })
+    } catch (error) {
+        
     }
 }

@@ -16,6 +16,15 @@ io.on('connection',(socket)=>{
     console.log("New Socket Connection ",socket.id)
 
 
+    socket.on('shareLocation',(location)=>{
+
+        console.log(location)
+        if(location.lat != null && location.lng != null)
+        {
+            io.emit('getLocation',location)
+        }
+    })
+
     socket.on('disconnect',()=>{
         console.log("Connection Disconnected")
     })
