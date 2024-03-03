@@ -8,6 +8,7 @@ const server=http.createServer(app)
 
 const io =new Server(server,{
     cors:{
+    // origin:["https://ab72-103-154-26-126.ngrok-free.app"],methods:["GET","POST"]
     origin:["http://localhost:3000"],methods:["GET","POST"]
 },})
 
@@ -16,12 +17,21 @@ io.on('connection',(socket)=>{
     console.log("New Socket Connection ",socket.id)
 
 
-    socket.on('shareLocation',(location)=>{
+    socket.on('shareLocationMur',(location)=>{
 
         console.log(location)
         if(location.lat != null && location.lng != null)
         {
-            io.emit('getLocation',location)
+            io.emit('getLocationMur',location)
+        }
+    })
+   
+    socket.on('shareLocationBud',(location)=>{
+
+        console.log(location)
+        if(location.lat != null && location.lng != null)
+        {
+            io.emit('getLocationBud',location)
         }
     })
 

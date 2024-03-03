@@ -1,17 +1,13 @@
 import mongoose from 'mongoose'
 
 const busStopSchema=new mongoose.Schema({
-    stopId:{
-        type:String,
-        required:true
-    },
-    name:{
+    stopName:{
         type:String,
         required:true
     },
     location:{
-        'lat':String,
-        'lng':String
+        lat:String,
+        lng:String
     }
 })
 

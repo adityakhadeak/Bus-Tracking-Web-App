@@ -1,5 +1,6 @@
 import BusModel from "../models/BusModel.js"
 import BusScheduleModel from "../models/BusScheduleModel.js"
+import BusStops from "../models/BusStops.js"
 export const addschedule = async (req, res) => {
     const data = req.body
     try {
@@ -77,3 +78,39 @@ export const addbus = async (req, res) => {
     }
 }
 
+export const addBusStop=async(req,res)=>{
+    try {
+        const data=req.body
+
+        const doExist=await BusStops.findOne({stopName:data?.stopName})
+
+        if(doExist!=null)
+        {
+            return res.status(400).json({
+                message:"Stop Already Exist"
+            })
+        }
+
+        const busStop=new BusStops({
+            stopName:data?.stopName,
+            location:{
+                lat:data?.lat,
+                lng:data?.lng
+            }
+        })
+
+        const savedData=await busStop.save()
+
+        return res.status(200).json({
+            message:"Added BusStop",
+            savedData
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            error
+        });
+    }
+}

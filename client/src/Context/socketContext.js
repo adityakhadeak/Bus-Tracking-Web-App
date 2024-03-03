@@ -6,10 +6,12 @@ export const SocketContext = createContext()
 
 export const SocketContextProvider = ({ children }) => {
     const [socket, setSocket] = useState(null)
-    const [coordinates, setCoordinates] = useState({"lat":"","lng":""})
-    const [updatedCoordinates,setUpdatedCoordinates]=useState({"lat":"","lng":""})
+    const [coordinatesMur, setCoordinatesMur] = useState({ "lat": "", "lng": "" })
+    const [coordinatesBud, setCoordinatesBud] = useState({ "lat": "", "lng": "" })
+    const [updatedCoordinatesMur, setUpdatedCoordinatesMur] = useState({ "lat": "19.168799", "lng": "73.236864" })
+    const [updatedCoordinatesBud, setUpdatedCoordinatesBud] = useState({ "lat": "19.258226", "lng": "73.389935" })
     useEffect(() => {
-        const newSocket = io('http://localhost:4000')
+        const newSocket = io(baseUrl)
         newSocket.on('connect_error', (error) => {
             console.error('Socket connection error:', error);
         });
@@ -21,43 +23,63 @@ export const SocketContextProvider = ({ children }) => {
     }, [])
 
 
-    const fetchLastLocation=async(busId)=>{
-        console.log(busId)
-        const response = await fetch(`${baseUrl}/api/location/getlocation/${busId}`,{
-            method:'GET',
-            headers:{
-                "Content-Type":"application/json"
+    const fetchLastLocation = async (busName) => {
+        console.log(busName)
+        const response = await fetch(`${baseUrl}/api/location/getlocation/${busName}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
             }
         })
-        const data= await  response.json()
+        const data = await response.json()
         console.log(data)
-        if(!data.success)
-        {
-           return console.log("Error getting last location of the bus")
+        if (!data.success) {
+            return console.log("Error getting last location of the bus")
         }
+        if (busName === "TOMURBAD")
+            setUpdatedCoordinatesMur({ "lat": data.lat, "lng": data.lng })
+        else
+            setUpdatedCoordinatesBud({ "lat": data.lat, "lng": data.lng })
 
-        setUpdatedCoordinates({"lat":data.lat,"lng":data.lng})
     }
-    //sharelocation
-    useEffect(()=>{
+    //sharelocationMurbad
+    useEffect(() => {
         console.log(socket)
-        if(socket===null)return
+        if (socket === null) return
 
-        socket.emit('shareLocation',{lat:coordinates.lat,lng:coordinates.lng})
-// eslint-disable-next-line 
-    },[coordinates])
+        socket.emit('shareLocationMur', { lat: coordinatesMur.lat, lng: coordinatesMur.lng })
+        // eslint-disable-next-line 
+    }, [coordinatesMur])
 
+    //sharelocationBadlapur
+    useEffect(() => {
+        if (socket === null) return
 
-    useEffect(()=>{
-        if(socket===null)return
+        socket.emit('shareLocationBud', { lat: coordinatesBud.lat, lng: coordinatesBud.lng })
+        // eslint-disable-next-line 
+    }, [coordinatesBud])
 
-        socket.on('getLocation',(res)=>{
-            setUpdatedCoordinates(res)
-            console.log(updatedCoordinates)
+    // getLocation Murbad 
+    useEffect(() => {
+        if (socket === null) return
+
+        socket.on('getLocationMur', (res) => {
+            setUpdatedCoordinatesMur(res)
+            console.log(updatedCoordinatesMur)
         })
     })
 
-    return (<SocketContext.Provider value={{setCoordinates ,updatedCoordinates,fetchLastLocation}}>
+    // getLocation Badlapur 
+    useEffect(() => {
+        if (socket === null) return
+
+        socket.on('getLocationBud', (res) => {
+            setUpdatedCoordinatesBud(res)
+            console.log(updatedCoordinatesBud)
+        })
+    })
+
+    return (<SocketContext.Provider value={{ setCoordinatesMur, updatedCoordinatesMur, setCoordinatesBud, updatedCoordinatesBud, fetchLastLocation }}>
         {children}
     </SocketContext.Provider>)
 }

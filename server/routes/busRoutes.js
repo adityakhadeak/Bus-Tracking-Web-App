@@ -1,5 +1,5 @@
 import express from 'express'
-import {addbus, addschedule, getbusschedule} from '../controllers/busController.js'
+import {addBusStop, addbus, addschedule, getbusschedule} from '../controllers/busController.js'
 
 const routerBus=express()
 
@@ -11,4 +11,7 @@ routerBus.get("/getbusschedule",getbusschedule)
 
 //addbusdetails
 routerBus.post("/addbus",addbus)
+
+//addbusStop
+routerBus.post("/addstop",addBusStop)
 export default routerBus

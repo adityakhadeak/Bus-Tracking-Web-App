@@ -74,7 +74,7 @@ function NavBar() {
                     <ul className='text-[16px]  font-[Raleway] font-semibold flex flex-col gap-3'>
                         <li><NavLink to={'/'} className='onHover relative  p-1 mx-2 m-1'>Home</NavLink></li>
                         <li><NavLink to={'TimeTable'} className='onHover relative  p-1 m-1'>Time-Table</NavLink></li>
-                        <li><NavLink to={'LiveLoc'} className='onHover relative  p-1 m-1'>Live Location</NavLink></li>
+                        <li><NavLink to={'livelocation'} className='onHover relative  p-1 m-1'>Live Location</NavLink></li>
                     </ul>
                 </div>
                 <div className='px-1 ml-3'>

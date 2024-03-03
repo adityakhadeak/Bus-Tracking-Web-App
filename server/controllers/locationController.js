@@ -2,9 +2,9 @@ import BusModel from "../models/BusModel.js";
 
 export const sharelocation=async(req,res)=>{
     const data=req.body
-    const busId=req.params.id
+    const busName=req.params.busName
     try {
-        const existingLocation= await BusModel.findById(busId)
+        const existingLocation= await BusModel.findOne({busName:busName})
         if(!existingLocation)
         {
             const busData = new BusModel({
@@ -44,9 +44,9 @@ export const sharelocation=async(req,res)=>{
 
 export const getLocation=async(req,res)=>{
     try {
-        const busId=req.params.busId
+        const busName=req.params.busName
 
-        const businfo=await BusModel.findById(busId)
+        const businfo=await BusModel.findOne({busName:busName})
     
         if(!businfo)
         {
