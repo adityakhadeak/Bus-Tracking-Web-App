@@ -5,10 +5,10 @@ import Navbar from '../Components/Navbar.js'
 const RootLayout = () => {
   return (
     <div className='grid  grid-rows-[auto 1fr] '>
-      <div>
+      <div className='w-[100vw]'>
         <Navbar />
       </div>
-      <div>
+      <div  className='w-[100vw]' >
         <Outlet />
       </div>
     </div>

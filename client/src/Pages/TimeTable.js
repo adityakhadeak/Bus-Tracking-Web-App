@@ -65,10 +65,10 @@ const TimeTable = () => {
 
 
   return (
-    <div className='p-10'>
+    <div className='font-[Raleway] p-10'>
       <div className='flex flex-col justify-center items-center my-7'>
-        <h1>Choose Destination</h1>
-        <div className='p-2 flex flex-row justify-between w-[20%]'>
+        <h1 className='font-bold text-xl'>Choose Destination</h1>
+        <div className='p-2 flex flex-row gap-2 justify-between md:w-[20%] w-[90%]'>
           <div>
             <input disabled={isSharingLocation.isOn} onChange={(e) => {
               setDestination(e.target.value)
@@ -84,23 +84,23 @@ const TimeTable = () => {
         </div>
       </div>
 
-      <div className='px-[20px flex flex-col justify-center items-center py-5 my-5'>
-        <h1 className='my-3 p-3 text-center text-lg'>{destination === 'murbad' ? 'From Badlapur' : 'From Murbad'}</h1>
+      <div className='px-[20px] flex flex-col justify-center items-center py-5 my-5'>
+        <h1 className='my-3 p-3 text-center font-bold text-xl '>{destination === 'murbad' ? 'From Badlapur' : 'From Murbad'}</h1>
 
 
         {destination === 'murbad' ?
-          <div className='flex flex-row justify-between w-[20%]'>
-            <button onClick={() => fetchLastLocation("TOMURBAD")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white' ><Link to={'/livelocation'} >View Locn</Link></button>
+          <div className='flex flex-row gap-3 justify-between md:w-[20%] w-[100%]'>
+            <Link to={'/livelocation'} onClick={() => fetchLastLocation("TOMURBAD")} className=' text-center bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[5px] py-[8px] w-[160px] rounded-[10px] text-white' >View Locn</Link>
             {isSharingLocation.busName === "TOMURBAD" && isSharingLocation.isOn === true ?
-              <button onClick={() => stopShareLocation("TOMURBAD")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Stop Share</button>
-              : <button disabled={isSharingLocation.isOn} onClick={() => shareLocation("TOMURBAD")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white '>Share Loc</button>
+              <button onClick={() => stopShareLocation("TOMURBAD")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[5px] py-[8px] w-[160px] rounded-[10px] text-white'>Stop Share</button>
+              : <button disabled={isSharingLocation.isOn} onClick={() => shareLocation("TOMURBAD")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[5px] py-[8px] w-[160px] rounded-[10px] text-white '>Share Loc</button>
             }
           </div> :
-          <div className='flex flex-row justify-between w-[20%]'>
-            <button onClick={() => fetchLastLocation("TOBADLAPUR")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white' ><Link to={'/livelocation'} >View Locn</Link></button>
+          <div className='flex flex-row gap-3 justify-between md:w-[20%] w-[100%]'>
+          <Link to={'/livelocation'} onClick={() => fetchLastLocation("TOBADLAPUR")} className='text-center  bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[5px] py-[8px] w-[160px] rounded-[10px] text-white' >View Locn</Link>
             {isSharingLocation.busName === "TOBADLAPUR" && isSharingLocation.isOn === true ?
-              <button onClick={() => stopShareLocation("TOBADLAPUR")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white'>Stop Share</button>
-              : <button disabled={isSharingLocation.isOn} onClick={() => shareLocation("TOBADLAPUR")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] w-[110px] rounded-[15px] text-white '>Share Loc</button>
+              <button onClick={() => stopShareLocation("TOBADLAPUR")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[5px] py-[8px] w-[160px] rounded-[10px] text-white'>Stop Share</button>
+              : <button disabled={isSharingLocation.isOn} onClick={() => shareLocation("TOBADLAPUR")} className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[5px] py-[8px] w-[160px] rounded-[10px] text-white '>Share Loc</button>
             }
           </div>
         }

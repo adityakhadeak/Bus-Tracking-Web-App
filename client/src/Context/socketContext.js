@@ -16,7 +16,6 @@ export const SocketContextProvider = ({ children }) => {
         newSocket.on('connect_error', (error) => {
             console.error('Socket connection error:', error);
         });
-        console.log(newSocket)
         setSocket(newSocket)
         return () => {
             newSocket.disconnect()
@@ -25,7 +24,6 @@ export const SocketContextProvider = ({ children }) => {
 
 
     const fetchLastLocation = async (busName) => {
-        console.log(busName)
         const response = await fetch(`${baseUrl}/api/location/getlocation/${busName}`, {
             method: 'GET',
             headers: {
@@ -33,7 +31,6 @@ export const SocketContextProvider = ({ children }) => {
             }
         })
         const data = await response.json()
-        console.log(data)
         if (!data.success) {
             return console.log("Error getting last location of the bus")
         }
@@ -52,7 +49,6 @@ export const SocketContextProvider = ({ children }) => {
     }
     //sharelocationMurbad
     useEffect(() => {
-        console.log(socket)
         if (socket === null) return
 
         socket.emit('shareLocationMur', { lat: coordinatesMur.lat, lng: coordinatesMur.lng })
@@ -73,7 +69,6 @@ export const SocketContextProvider = ({ children }) => {
 
         socket.on('getLocationMur', (res) => {
             setUpdatedCoordinatesMur(res)
-            console.log(updatedCoordinatesMur)
         })
     })
 
@@ -83,7 +78,6 @@ export const SocketContextProvider = ({ children }) => {
 
         socket.on('getLocationBud', (res) => {
             setUpdatedCoordinatesBud(res)
-            console.log(updatedCoordinatesBud)
         })
     })
 

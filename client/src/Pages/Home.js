@@ -2,11 +2,12 @@ import React from 'react'
 import homebus from "../Images/homebus.png"
 import mobileView from "../Images/mobileView.png"
 import feature_pic from "../Images/features_pic.png"
+import { Link } from 'react-router-dom'
 const Home = () => {
   const features = [
     {
       "title": "Mobile GPS",
-      "description": "Install GPS devices on your buses to capture location, speed, and other vehicle data."
+      "description": "Capture's location of the bus, speed, and other vehicle data."
     },
     {
       "title": "Real-time data",
@@ -28,7 +29,7 @@ const Home = () => {
             <h1 className='md:w-[50%] w-[100%] p-2 md:text-white text-black  md:leading-[60px] leading-[40px] text-center md:text-[48px] text-[28px] font-bold'>Real-time location tracking for your public transit system</h1>
             <h3 className='p-3 md:block hidden'>Get insights into your service, improve efficiency, and keep passengers informed with BusTrack</h3>
           </div>
-          <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] my-3 md:w-[10%] w-[100px] rounded-[15px] text-white'>Start Tracking</button>
+          <Link to={'/timetable'} className='bg-[#333333] text-center hover:bg-[#505050] duration-100 font-bold p-[6px] my-3 md:w-[10%] w-[100px] rounded-[15px] text-white'>Start Tracking</Link>
 
         </div>
       </div>
@@ -48,7 +49,7 @@ const Home = () => {
       </div>
       <div className='flex justify-center items-center flex-col'>
         <p className='md:w-[50%] w-[100%] p-2  text-black  md:leading-[60px] leading-[40px] text-center md:text-[48px] text-[28px] font-bold'>Ready to take control of your public transit system?</p>
-        <button className='bg-[#333333] hover:bg-[#505050] duration-100 font-bold p-[6px] my-3 md:w-[10%] w-[100px] rounded-[15px] text-white'>Start Tracking</button>
+        <Link to={'/timetable'} className='bg-[#333333] text-center hover:bg-[#505050] duration-100 font-bold p-[6px] my-3 md:w-[10%] w-[100px] rounded-[15px] text-white'>Start Tracking </Link>
 
       </div>
     </div>
