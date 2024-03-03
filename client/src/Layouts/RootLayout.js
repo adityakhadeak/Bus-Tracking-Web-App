@@ -1,12 +1,12 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import NavBar from '../Components/NavBar.js'
+import Navbar from '../Components/Navbar.js'
 
 const RootLayout = () => {
   return (
     <div className='grid  grid-rows-[auto 1fr] '>
       <div>
-        <NavBar />
+        <Navbar />
       </div>
       <div>
         <Outlet />

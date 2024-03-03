@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 
 
-function NavBar() {
+const NavBar=()=> {
     const [menu, setMenu] = useState(false)
     useEffect(() => {
         const handleResize = () => {

@@ -9,7 +9,7 @@ const server=http.createServer(app)
 const io =new Server(server,{
     cors:{
     // origin:["https://ab72-103-154-26-126.ngrok-free.app"],methods:["GET","POST"]
-    origin:["http://localhost:3000"],methods:["GET","POST"]
+    origin:["https://bus-tracking-web-app.onrender.com"],methods:["GET","POST"]
 },})
 
 io.on('connection',(socket)=>{
