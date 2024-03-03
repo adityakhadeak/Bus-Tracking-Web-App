@@ -4,9 +4,9 @@ import BusStops from "../models/BusStops.js"
 export const addschedule = async (req, res) => {
     const data = req.body
     try {
-        const busId=await BusModel.findOne({"busName":`TO${data?.to.toUpperCase()}${data?.busTime}`})
+        const busId = await BusModel.findOne({ "busName": `TO${data?.to.toUpperCase()}${data?.busTime}` })
         const scheduleData = new BusScheduleModel({
-            busId:busId._id,
+            busId: busId._id,
             busNo: data?.busNo,
             from: data?.from,
             to: data?.to,
@@ -29,23 +29,22 @@ export const addschedule = async (req, res) => {
     }
 }
 
-export const getbusschedule=async(req,res)=>{
+export const getbusschedule = async (req, res) => {
     try {
-        const data= await BusScheduleModel.find()
+        const data = await BusScheduleModel.find()
 
-        if(!data)
-        {
+        if (!data) {
             res.status(400).json({
-                message:"No data found"
+                message: "No data found"
             })
         }
         res.status(200).json({
-            message:"success",
+            message: "success",
             data
         })
     } catch (error) {
         res.status(500).json({
-            message:"Internal server error",
+            message: "Internal server error",
             error
         })
     }
@@ -56,13 +55,13 @@ export const addbus = async (req, res) => {
     try {
         const busData = new BusModel({
             busName: data?.busName,
-            currentLocation:{
-                lat:data?.busLat,
-                lng:data?.busLng
+            currentLocation: {
+                lat: data?.busLat,
+                lng: data?.busLng
             }
         })
 
-        const savedData= await busData.save()
+        const savedData = await busData.save()
 
         res.status(200).json({
             message: "Data Saved",
@@ -78,31 +77,30 @@ export const addbus = async (req, res) => {
     }
 }
 
-export const addBusStop=async(req,res)=>{
+export const addBusStop = async (req, res) => {
     try {
-        const data=req.body
+        const data = req.body
 
-        const doExist=await BusStops.findOne({stopName:data?.stopName})
+        const doExist = await BusStops.findOne({ stopName: data?.stopName })
 
-        if(doExist!=null)
-        {
+        if (doExist != null) {
             return res.status(400).json({
-                message:"Stop Already Exist"
+                message: "Stop Already Exist"
             })
         }
 
-        const busStop=new BusStops({
-            stopName:data?.stopName,
-            location:{
-                lat:data?.lat,
-                lng:data?.lng
+        const busStop = new BusStops({
+            stopName: data?.stopName,
+            location: {
+                lat: data?.lat,
+                lng: data?.lng
             }
         })
 
-        const savedData=await busStop.save()
+        const savedData = await busStop.save()
 
         return res.status(200).json({
-            message:"Added BusStop",
+            message: "Added BusStop",
             savedData
         })
     } catch (error) {
@@ -112,5 +110,26 @@ export const addBusStop=async(req,res)=>{
             message: 'Internal server error',
             error
         });
+    }
+}
+
+export const getAllBusStops = async (req, res) => {
+    try {
+        const data = await BusStops.find()
+
+        if (!data) {
+            res.status(400).json({
+                message: "No data found"
+            })
+        }
+        res.status(200).json({
+            message: "success",
+            data
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal server error",
+            error
+        })
     }
 }

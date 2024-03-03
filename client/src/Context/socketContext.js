@@ -8,6 +8,7 @@ export const SocketContextProvider = ({ children }) => {
     const [socket, setSocket] = useState(null)
     const [coordinatesMur, setCoordinatesMur] = useState({ "lat": "", "lng": "" })
     const [coordinatesBud, setCoordinatesBud] = useState({ "lat": "", "lng": "" })
+    const [viewLocationOf, setViewLocationOf] = useState("TOMURBAD")
     const [updatedCoordinatesMur, setUpdatedCoordinatesMur] = useState({ "lat": "19.168799", "lng": "73.236864" })
     const [updatedCoordinatesBud, setUpdatedCoordinatesBud] = useState({ "lat": "19.258226", "lng": "73.389935" })
     useEffect(() => {
@@ -37,9 +38,16 @@ export const SocketContextProvider = ({ children }) => {
             return console.log("Error getting last location of the bus")
         }
         if (busName === "TOMURBAD")
+        {
             setUpdatedCoordinatesMur({ "lat": data.lat, "lng": data.lng })
+            setViewLocationOf("TOMURBAD")
+        }
         else
+        {
             setUpdatedCoordinatesBud({ "lat": data.lat, "lng": data.lng })
+            setViewLocationOf("TOBADLAPUR")
+
+        }
 
     }
     //sharelocationMurbad
@@ -79,7 +87,7 @@ export const SocketContextProvider = ({ children }) => {
         })
     })
 
-    return (<SocketContext.Provider value={{ setCoordinatesMur, updatedCoordinatesMur, setCoordinatesBud, updatedCoordinatesBud, fetchLastLocation }}>
+    return (<SocketContext.Provider value={{ viewLocationOf, setViewLocationOf,setCoordinatesMur, updatedCoordinatesMur, setCoordinatesBud, updatedCoordinatesBud, fetchLastLocation }}>
         {children}
     </SocketContext.Provider>)
 }

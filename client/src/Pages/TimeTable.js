@@ -4,9 +4,10 @@ import { baseUrl } from '../helper'
 import { SocketContext } from '../Context/socketContext.js'
 import { Link } from 'react-router-dom'
 const TimeTable = () => {
-  const { setCoordinatesMur, setCoordinatesBud, fetchLastLocation } = useContext(SocketContext)
+  const { setCoordinatesMur, setCoordinatesBud, fetchLastLocation} = useContext(SocketContext)
   const { fetchBusSchedule } = useContext(fetchAllContext)
   const [destination, setDestination] = useState('murbad')
+
   // const [fromBadlapurSchedule, setFromBadlapurSchedule] = useState([])
   // const [fromMurbadSchedule, setFromMurbadSchedule] = useState([])
   const [watchPosId, setWatchPosId] = useState(null)
