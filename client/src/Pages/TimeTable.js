@@ -4,17 +4,19 @@ import { baseUrl } from '../helper'
 import { SocketContext } from '../Context/socketContext.js'
 import { Link } from 'react-router-dom'
 const TimeTable = () => {
-  const { setCoordinatesMur, setCoordinatesBud, fetchLastLocation} = useContext(SocketContext)
+  const { setCoordinatesMur, setCoordinatesBud, fetchLastLocation,isSharingLocation,setIsSharingLocation} = useContext(SocketContext)
   const { fetchBusSchedule } = useContext(fetchAllContext)
   const [destination, setDestination] = useState('murbad')
 
   // const [fromBadlapurSchedule, setFromBadlapurSchedule] = useState([])
   // const [fromMurbadSchedule, setFromMurbadSchedule] = useState([])
   const [watchPosId, setWatchPosId] = useState(null)
-  const [isSharingLocation, setIsSharingLocation] = useState({ "busName": "", "isOn": false });
+  console.log(isSharingLocation)
+
 
   const shareLocation = (busName) => {
-    setIsSharingLocation({ busName, isOn: true });
+    setIsSharingLocation({ busName:busName, isOn: true });
+    console.log(isSharingLocation)
     const watchId = navigator.geolocation.watchPosition(
       async (position) => {
         const { latitude, longitude } = position.coords
@@ -47,7 +49,7 @@ const TimeTable = () => {
 
   const stopShareLocation = (busName) => {
     navigator.geolocation.clearWatch(watchPosId);
-    setIsSharingLocation({ busName: busName, isOn: false });
+    setIsSharingLocation({ busName:"", isOn: false });
   }
   useEffect(() => {
     fetchBusSchedule()

@@ -11,6 +11,8 @@ export const SocketContextProvider = ({ children }) => {
     const [viewLocationOf, setViewLocationOf] = useState("TOMURBAD")
     const [updatedCoordinatesMur, setUpdatedCoordinatesMur] = useState({ "lat": "19.168799", "lng": "73.236864" })
     const [updatedCoordinatesBud, setUpdatedCoordinatesBud] = useState({ "lat": "19.258226", "lng": "73.389935" })
+    const [isSharingLocation, setIsSharingLocation] = useState({ "busName": "", "isOn": false });
+
     useEffect(() => {
         const newSocket = io(baseUrl)
         newSocket.on('connect_error', (error) => {
@@ -81,7 +83,7 @@ export const SocketContextProvider = ({ children }) => {
         })
     })
 
-    return (<SocketContext.Provider value={{ viewLocationOf, setViewLocationOf,setCoordinatesMur, updatedCoordinatesMur, setCoordinatesBud, updatedCoordinatesBud, fetchLastLocation }}>
+    return (<SocketContext.Provider value={{isSharingLocation, setIsSharingLocation, viewLocationOf, setViewLocationOf,setCoordinatesMur, updatedCoordinatesMur, setCoordinatesBud, updatedCoordinatesBud, fetchLastLocation }}>
         {children}
     </SocketContext.Provider>)
 }
